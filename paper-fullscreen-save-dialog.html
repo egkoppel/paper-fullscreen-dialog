@@ -86,7 +86,7 @@
       <paper-icon-button icon="close" on-tap="close"></paper-icon-button>
       <content select=".title"></content>
       <template is="dom-if" if="[[!_saving]]">
-      <paper-button on-tap="save">[[confirmButton]]</paper-button>
+      <paper-button on-tap="_save">[[confirmButton]]</paper-button>
       </template>
       <template is="dom-if" if="[[_saving]]">
       <paper-button>
@@ -135,7 +135,7 @@
           this._hidden = true;
           this._zIndex = -99999;
         },
-        save: function() {
+        _save: function() {
           this._saving = true;
           this.fire('save');
         },
