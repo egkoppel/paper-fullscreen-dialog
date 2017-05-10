@@ -5,6 +5,9 @@
   "authors": [
     "Eliyahu Gluschove-Koppel <egluschovekoppel1@gmail.com>"
   ],
+  "demos": {
+    "Demo":"index.html"
+  },
   "description": "A polymer fullscreen paper dialog, with both save and cancel buttons",
   "main": "paper-fullscreen-save-dialog.html",
   "keywords": [
