@@ -4,7 +4,7 @@
 # paper-fullscreen-save-dialog
 <!---
 ```
-<custom-element-demo>
+<custom-element-demo height="150" width="300">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="paper-fullscreen-save-dialog.html">
