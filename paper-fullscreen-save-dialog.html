@@ -1,0 +1,149 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+
+<dom-module id="paper-fullscreen-save-dialog">
+<template>
+  <style is="custom-style">
+    :host {
+      position: absolute;
+                top: 0px;
+                bottom: 0px;
+                left: 0px;
+                right: 0px;
+    }
+
+    #scroller {
+      background-color: #ffffff;
+      padding-top: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      width: 100vw;
+      height: calc(100vh - 64px - 10px);
+      overflow: scroll;
+    }
+
+    #content {
+      width: calc(100vw - 20px);
+    }
+
+    .loadContainer {
+      width: 54px;
+      height: 16px;
+      display: flex;
+    align-items: center;
+    }
+
+    .load {
+  width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+#one {
+  animation: dotOne 1s linear infinite;
+  margin: 1px;
+}
+
+#two {
+  animation: dotTwo 1s linear infinite;
+  margin: 1px;
+}
+
+#three {
+  animation: dotThree 1s linear infinite;
+  margin: 1px;
+}
+
+@keyframes dotOne {
+    0%   {width: 10px;height: 10px;}
+    33%   {width: 16px;height: 16px;}
+    66%   {width: 10px;height: 10px;}
+  100% {width: 10px;height: 10px;}
+}
+
+@keyframes dotTwo {
+    0%   {width: 10px;height: 10px;}
+    33%   {width: 10px;height: 10px;}
+    66%   {width: 16px;height: 16px;}
+  100% {width: 10px;height: 10px;}
+}
+
+@keyframes dotThree {
+  0%   {width: 16px;height: 16px;}
+    33%   {width: 10px;height: 10px;}
+    66%   {width: 10px;height: 10px;}
+  100% {width: 16px;height: 16px;}
+}
+    </style>
+<paper-header-panel class="flex" hidden$="[[_hidden]]" style="z-index: [[_zIndex]]">
+    <paper-toolbar>
+      <paper-icon-button icon="close" on-tap="close"></paper-icon-button>
+      <content select=".title"></content>
+      <template is="dom-if" if="[[!_saving]]">
+      <paper-button on-tap="save">[[confirmButton]]</paper-button>
+      </template>
+      <template is="dom-if" if="[[_saving]]">
+      <paper-button>
+  <span class="loadContainer"><div class="load" id="one"></div><div class="load" id="two"></div><div class="load" id="three"></div></span>
+  </paper-button>
+  </template>
+    </paper-toolbar>
+    <div id="scroller">
+      <div  id="content">
+      <content select="*"></content>
+      </div>
+    </div>
+  </paper-header-panel>
+</template>
+<script>
+    Polymer({
+        is: "paper-fullscreen-save-dialog",
+        properties: {
+          confirmButton: {
+            type: String,
+            value: "Save"
+          },
+          _hidden: {
+            type: Boolean,
+            value: true
+          },
+          _zIndex: {
+            type: Number,
+            value: -1
+          },
+          saveCompleted: {
+            type: Boolean,
+            value: false,
+            observer: '_saveChanged'
+          },
+          _saving: {
+            type: Boolean,
+            value: false
+          }
+        },
+        open: function() {
+          this._hidden = false;
+          this._zIndex = 99999;
+        },
+        close: function() {
+          this._hidden = true;
+          this._zIndex = -99999;
+        },
+        save: function() {
+          this._saving = true;
+          this.fire('save');
+        },
+        _saveChanged: function() {
+          this.saveCompleted = false;
+          this.close();
+          this._saving = false;
+        }
+    });
+</script>
+</dom-module>
