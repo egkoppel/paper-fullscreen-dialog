@@ -15,7 +15,7 @@
 ```
 -->
 ```html
-<paper-button onclick="document.getElememtById('dialog').open()" style="z-index:1">Open dialog</paper-button>
+<paper-button onclick="document.getElementById('dialog').open()" style="z-index:1">Open dialog</paper-button>
 <paper-fullscreen-save-dialog id="dialog">
           <paper-fullscreen-save-dialog id="dialog" confirm-button="Done">
             <span class="title">Hello world</span>
