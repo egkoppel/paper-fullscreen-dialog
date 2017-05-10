@@ -1,4 +1,5 @@
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/owner/my-element)
+[![Bower version](https://badge.fury.io/bo/paper-fullscreen-save-dialog.svg)](https://badge.fury.io/bo/paper-fullscreen-save-dialog)
 # paper-fullscreen-save-dialog
 <!---
 ```
