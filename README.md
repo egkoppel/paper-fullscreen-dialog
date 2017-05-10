@@ -1,5 +1,6 @@
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/owner/my-element)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/egkoppel/paper-fullscreen-save-dialog)
 [![Bower version](https://badge.fury.io/bo/paper-fullscreen-save-dialog.svg)](https://badge.fury.io/bo/paper-fullscreen-save-dialog)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # paper-fullscreen-save-dialog
 <!---
 ```
