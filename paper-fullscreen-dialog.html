@@ -5,11 +5,11 @@
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
 
-<dom-module id="paper-fullscreen-save-dialog">
+<dom-module id="paper-fullscreen-dialog">
 <template>
   <style is="custom-style">
     :host {
-      position: absolute;
+      position: fixed;
                 top: 0px;
                 bottom: 0px;
                 left: 0px;
@@ -81,18 +81,26 @@
   100% {width: 16px;height: 16px;}
 }
     </style>
-<paper-header-panel class="flex" hidden$="[[_hidden]]" style="z-index: [[_zIndex]]">
-    <paper-toolbar>
+<paper-header-panel class="flex">
+    <paper-toolbar style="background-color:[[toolbarColor]]">
+      <!--<paper-icon-button icon="close" on-tap="close"></paper-icon-button>-->
+      <template is="dom-if" if="[[customBack]]">
+      <content select=".back"></content>
+      </template>
+      <template is="dom-if" if="[[!customBack]]">
       <paper-icon-button icon="close" on-tap="close"></paper-icon-button>
+      </template>
       <content select=".title"></content>
       <template is="dom-if" if="[[!_saving]]">
-      <paper-button on-tap="_save">[[confirmButton]]</paper-button>
+      <paper-button on-tap="_save" disabled$="[[saveDisabled]]">[[confirmButton]]</paper-button>
       </template>
+      <template is="dom-if" if="[[saveDots]]">
       <template is="dom-if" if="[[_saving]]">
       <paper-button>
   <span class="loadContainer"><div class="load" id="one"></div><div class="load" id="two"></div><div class="load" id="three"></div></span>
   </paper-button>
   </template>
+      </template>
     </paper-toolbar>
     <div id="scroller">
       <div  id="content">
@@ -103,41 +111,48 @@
 </template>
 <script>
     Polymer({
-        is: "paper-fullscreen-save-dialog",
+        is: "paper-fullscreen-dialog",
         properties: {
           confirmButton: {
             type: String,
             value: "Save"
           },
-          _hidden: {
-            type: Boolean,
-            value: true
-          },
-          _zIndex: {
-            type: Number,
-            value: -1
-          },
           saveCompleted: {
             type: Boolean,
             value: false,
-            observer: '_saveChanged'
+            observer: '_saveChanged',
+            reflectToAttribute: true
           },
           _saving: {
+            type: Boolean,
+            value: false
+          },
+          customBack: {
+            type: Boolean,
+            value: false
+          },
+          saveDots: {
             type: Boolean,
             value: false
           }
         },
         open: function() {
-          this._hidden = false;
-          this._zIndex = 99999;
+          this.style.visibility = "visible";
+          this.style.zIndex = 99999;
         },
         close: function() {
-          this._hidden = true;
-          this._zIndex = -99999;
+          this.style.visibility = "hidden";
+          this.style.zIndex = -99999;
         },
         _save: function() {
           this._saving = true;
-          this.fire('save');
+          if (this.saveDots) {
+            this.fire('save');
+          } else {
+            this.saveCompleted = false;
+            this.close();
+            this._saving = false;
+          }
         },
         _saveChanged: function() {
           this.saveCompleted = false;

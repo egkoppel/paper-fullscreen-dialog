@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="../../paper-button/paper-button.html">
+        <link rel="import" href="../paper-fullscreen-dialog.html">
+    </head>
+    <body>
+  <template is="dom-bind" id="scope">
+      <paper-button raised on-tap="openStandard">Open standard dialog</paper-button>
+        <paper-fullscreen-dialog id="dialogStandard" confirm-button="Done">
+            <span class="title">Dialog</span>
+            <p>Fullscreen dialog</p>
+        </paper-fullscreen-dialog>
+
+        <paper-button raised on-tap="openColor">Open dialog with custom toolbar color</paper-button>
+        <paper-fullscreen-dialog id="dialogCustomColor" confirm-button="Done" toolbar-color="#558B2F">
+            <span class="title">Dialog</span>
+            <p>This one has a custom color</p>
+        </paper-fullscreen-dialog>
+
+        <paper-button raised on-tap="openDisabled">Disabled save button</paper-button>
+        <paper-fullscreen-dialog id="dialogDisabled" confirm-button="Save" save-disabled>
+            <span class="title">Dialog</span>
+            <p>The save button is disabled</p>
+        </paper-fullscreen-dialog>
+
+        <paper-button raised on-tap="openBack">Custom back button</paper-button>
+        <paper-fullscreen-dialog id="dialogBack" confirm-button="Done" custom-back="true">
+        <paper-icon-button icon="arrow-back" on-tap="close" class="back"></paper-icon-button>
+            <span class="title">Dialog</span>
+            <p>Custom back button</p>
+        </paper-fullscreen-dialog>
+
+        <paper-button raised on-tap="openDots">Save indeterminate progress</paper-button>
+        <paper-fullscreen-dialog id="dialogDots" confirm-button="Done" save-dots="true">
+            <span class="title">Dialog</span>
+            <p>Save progress</p>
+        </paper-fullscreen-dialog>
+  </template>
+  <script>
+    var $ = document.querySelector.bind(document);
+    var scope=$('#scope');
+
+    var addedListener = false;
+
+    console.log(scope);
+    scope.openStandard = function() {
+        document.querySelector('#dialogStandard').addEventListener('save', saveStandard);
+        document.querySelector('#dialogStandard').open();
+    };
+
+    scope.openColor = function() {
+        document.querySelector('#dialogCustomColor').open();
+    };
+
+    scope.openDisabled = function() {
+        document.querySelector('#dialogDisabled').open();
+    };
+
+    scope.openBack = function() {
+        document.querySelector('#dialogBack').open();
+    };
+
+    scope.openDots = function() {
+        if (addedListener == false) {
+            document.querySelector('#dialogDots').addEventListener('save', () => {
+                setTimeout(() => {
+                document.querySelector('#dialogDots').setAttribute('save-completed', 'true');
+                }, 1500);
+            });
+        }
+        document.querySelector('#dialogDots').open();
+    };
+
+    scope.close = function() {
+        document.querySelector('#dialogBack').close();
+    };
+  </script>
+
+</body>
+</html>
