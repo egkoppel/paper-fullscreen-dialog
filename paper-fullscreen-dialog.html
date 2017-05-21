@@ -5,6 +5,67 @@
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
 
+<!--
+  Material design: [Full-screen dialogs](https://material.io/guidelines/components/dialogs.html#dialogs-full-screen-dialogs)
+
+`paper-full-screen-dialog` is a full-screen dialog. When opened the dialog fills the whole screen.
+
+Always add the `confirm-button` attribute, with the title of the save button.
+
+```html
+<paper-fullscreen-dialog confirm-button="Save">
+...
+</paper-fullscreen-dialog>
+  ```
+
+Add the title of the dialog as a `<span>` with the class set to `title`. Other content will be shown in the body of the dialog.
+
+  ```html
+<paper-fullscreen-dialog>
+  <span class="title">Title of the dialog</span>
+  <p>Content</p>
+</paper-fullscreen-dialog>
+  ```
+
+  To show a custom back button (with your own click handler), set the `custom-back` attribute to `"true"`, and add a `<paper-icon-buton>` with a class of `back`.
+
+```html
+<paper-fullscreen-dialog custom-back="true">
+  <paper-icon-button icon="arrow-back" on-tap="close" class="back"></paper-icon-button>
+  <span class="title">Title of the dialog</span>
+  <p>Content</p>
+</paper-fullscreen-dialog>
+  ```
+
+  To enable/disable the save button, add/remove the `save-disabled` attribute.
+
+  To show an indeterminate progress spinner after the save button is clicked, set the `save-dots` attribute to `"true"`.
+  Also add an event listener for the `save` event to the dialog. This will notify you when the user clicks the save button.
+  After your saving logic is complete, set the `save-completed` attribute to `true`.
+
+  Example:
+  ```html
+<paper-fullscreen-dialog id="dialog"save-dots="true">
+...
+</paper-fullscreen-dialog>
+  ```
+  ```javascript
+document.querySelector('#dialog').addEventListener('save', function() {
+  // Your saving logic here
+  document.querySelector('#dialog').setAttribute('save-completed', 'true'); // This will close the dialog
+});
+  ```
+
+### Styling
+Set the toolbar color with the `toolbar-color` attribute.
+```html
+<paper-fullscreen-dialog toolbar-color="#ff0000">
+...
+</paper-fullscreen-dialog>
+```
+@demo demo/index.html
+-->
+
 <dom-module id="paper-fullscreen-dialog">
 <template>
   <style is="custom-style">

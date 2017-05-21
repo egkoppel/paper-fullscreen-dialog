@@ -2,12 +2,18 @@
 [![Bower version](https://badge.fury.io/bo/paper-fullscreen-save-dialog.svg)](https://badge.fury.io/bo/paper-fullscreen-save-dialog)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # paper-fullscreen-save-dialog
+
+Material design: [Full-screen dialogs](https://material.io/guidelines/components/dialogs.html#dialogs-full-screen-dialogs)
+
+`paper-full-screen-dialog` is a full-screen dialog. When opened the dialog fills the whole screen.
+
+Example:
 <!---
 ```
 <custom-element-demo height="150" width="300">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="paper-fullscreen-save-dialog.html">
+    <link rel="import" href="paper-fullscreen-dialog.html">
     <link rel="import" href="../paper-button/paper-button.html">
     <next-code-block></next-code-block>
   </template>
@@ -15,12 +21,10 @@
 ```
 -->
 ```html
-<paper-button onclick="document.getElementById('dialog').open()" style="z-index:1">Open dialog</paper-button>
-<paper-fullscreen-save-dialog id="dialog">
-          <paper-fullscreen-save-dialog id="dialog" confirm-button="Done">
+<!-- Call the open() function to open the dialog -->
+<paper-button onClick="document.getElementById('dialog').open()">Open dialog</paper-button>
+<paper-fullscreen-dialog id="dialog">
             <span class="title">Hello world</span>
             <p>Hello world</p>
-        </paper-fullscreen-save-dialog>
-</paper-fullscreen-save-dialog>
+</paper-fullscreen-dialog>
 ```
-A polymer fullscreen paper dialog, with both save and cancel buttons
