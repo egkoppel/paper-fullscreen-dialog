@@ -1,7 +1,7 @@
 {
   "name": "paper-fullscreen-save-dialog",
   "version": "1.0.0",
-  "homepage": "https://github.com/egkoppel/paper-fullscreen-save-dialog",
+  "homepage": "https://github.com/egkoppel/paper-fullscreen-dialog",
   "authors": [
     "Eliyahu Gluschove-Koppel <egluschovekoppel1@gmail.com>"
   ],
@@ -9,7 +9,7 @@
     "Demo":"demo/index.html"
   },
   "description": "A polymer fullscreen paper dialog, with both save and cancel buttons",
-  "main": "paper-fullscreen-save-dialog.html",
+  "main": "paper-fullscreen-dialog.html",
   "keywords": [
     "web-components",
     "polymer",
